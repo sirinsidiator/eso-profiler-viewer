@@ -1,0 +1,7 @@
+// SPDX-FileCopyrightText: 2022 sirinsidiator <insidiator@cmos.at>
+//
+// SPDX-License-Identifier: GPL-3.0-or-later
+
+fn main() {
+  tauri_build::build()
+}

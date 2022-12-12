@@ -1,0 +1,12 @@
+# SPDX-FileCopyrightText: 2022 sirinsidiator <insidiator@cmos.at>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+services:
+  perfetto:
+    image: python
+    command: /files/src-perfetto/build.sh
+    environment:
+      - PERFETTO_VERSION=v31.0
+    volumes:
+      - ./:/files

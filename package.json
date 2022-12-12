@@ -1,0 +1,24 @@
+{
+  "name": "eso-profiler-viewer",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "scripts": {
+    "perfetto": "docker compose up",
+    "perfetto-cleanup": "docker compose down",
+    "debug": "grunt && tauri icon && tauri build -d -b none",
+    "release": "grunt release && tauri icon && tauri build -b none",
+    "tauri": "tauri"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^1.2.2",
+    "grunt": "^1.5.3",
+    "grunt-contrib-clean": "^2.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-uglify": "^5.2.2",
+    "grunt-text-replace": "^0.4.0"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^1.2.0"
+  }
+}

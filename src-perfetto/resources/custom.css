@@ -1,0 +1,17 @@
+/*
+ * SPDX-FileCopyrightText: 2022 sirinsidiator <insidiator@cmos.at>
+ *
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+.sidebar section:nth-child(1) .section-content li:nth-child(2),
+.sidebar section:nth-child(1) .section-content li:nth-child(3),
+.sidebar section:nth-child(3) .section-content li:nth-child(1),
+.sidebar section:nth-child(4),
+.sidebar section:nth-child(5) .section-content li:nth-child(2),
+.sidebar section:nth-child(5) .section-content li:nth-child(3),
+.sidebar section:nth-child(5) .section-content li:nth-child(4),
+.sidebar section:nth-child(6)
+{
+    display: none;
+}
