@@ -191,17 +191,17 @@ export default class ESOProfilerExportConverter {
             let line = lines[i];
 
             // add comma after all root level entries except for the last one
-            if (i > 0 && line.search(/^(\w+) =$/) !== -1) {
+            if (i > 0 && line.search(/^(\w+)\s*=$/) !== -1) {
                 lines[i - 1] = lines[i - 1] + ",";
             }
             // convert root level entries to proper json format
-            line = line.replace(/^(\w+) =$/, "\"$1\":");
+            line = line.replace(/^(\w+)\s*=\s*(\{\s*)?$/, '"$1":$2');
 
             // convert all string keys to proper json format
-            line = line.replace(/^(\s+)\["(.+)"\] =(.+)$/, "$1\"$2\":$3");
+            line = line.replace(/^(\s+)\["(.+)"\]\s*=(.+)$/, '$1"$2":$3');
 
             // convert all numeric keys to proper json format
-            line = line.replace(/^(\s+)\[(\d+)\] =(.+)$/, "$1\"$2\":$3");
+            line = line.replace(/^(\s+)\[(\d+)\]\s*=(.+)$/, '$1"$2":$3');
 
             // remove comma after last entry of a table
             if (i > 0 && line.search(/^\s*\}/) !== -1 && !lines[i - 1].endsWith("{")) {
