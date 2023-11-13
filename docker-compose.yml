@@ -7,6 +7,6 @@ services:
     image: python
     command: /files/src-perfetto/build.sh
     environment:
-      - PERFETTO_VERSION=v31.0
+      - PERFETTO_VERSION=v38.0
     volumes:
       - ./:/files
