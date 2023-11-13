@@ -12,7 +12,7 @@ use std::path::PathBuf;
 use tauri::{utils::config::AppUrl, window::WindowBuilder, WindowUrl};
 
 fn main() {
-  let port = portpicker::pick_unused_port().expect("failed to find unused port");
+  let port = 10000; // need to use this port to allow for perfetto's external trace processor to work
 
   let mut context = tauri::generate_context!();
   let url = format!("http://localhost:{}", port).parse().unwrap();
