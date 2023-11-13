@@ -27,3 +27,8 @@ Once you are done building perfetto and have the necessary files in `src-perfett
 Calling `npm run debug` will create a debug build, while `npm run release` will create the minified and optimized release build.
 Both of these scripts will also (re-)generate the icons from the `app-icon.png` in the repository root.
 The first time you run each command will take longer in order to download and build the dependencies, but subsequent builds should be fairly fast.
+
+## Large Trace Files
+Perfetto's memory usage is limited by the browser engine and may not be able to load some files on its own.
+In case you run into memory issues you can use the native trace processor in server mode to avoid this problem.
+Simply download the matching perfetto build from their [github release page](https://github.com/google/perfetto/releases/tag/v38.0) and launch the trace processor with the http server flag (e.g. `trace_processor_shell -D`) before you run the profiler viewer. The processor is currently hardcoded to port 9001 and the viewer to port 10000, so make sure these are not used by other applications.
