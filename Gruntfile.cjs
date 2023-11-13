@@ -56,9 +56,15 @@ module.exports = function (grunt) {
         },
         uglify: {
             main: {
-                files: {
-                    'src/v31.0-b8da07095/frontend_bundle.js': ['src/v31.0-b8da07095/frontend_bundle.js']
-                }
+                files: [{
+                    expand: true,
+                    cwd: 'src/',
+                    src: ['v*-*/frontend_bundle.js'],
+                    dest: 'src/',
+                    rename: function(dest,src) {
+                        return dest+src
+                    }
+                }]
             }
         }
     });
