@@ -111,7 +111,7 @@ export default class ESOProfilerExportConverter {
         }
 
         let jsonContent = this.convertLuaToJSONString(content);
-        let parsed = JSON.parse(jsonContent)["ESOProfiler_Export"];
+        let parsed = JSON.parse(String.raw`${jsonContent}`)["ESOProfiler_Export"];
 
         for (const eventIndex in parsed["traceEvents"]) {
             const raw = parsed["traceEvents"][eventIndex];
@@ -181,8 +181,11 @@ export default class ESOProfilerExportConverter {
     async convert(file: File): Promise<File> {
         let content = await file.text();
         this.parseFileContent(content);
-        let newContent = JSON.stringify(this.data, null, 2);
-        return new File([newContent], file.name.replace(".lua", ".json"), { type: "application/json" });
+        const traceEvents = this.data.traceEvents.map(event => JSON.stringify(event));
+        const stackFrames = JSON.stringify(this.data.stackFrames);
+        const otherData = JSON.stringify(this.data.otherData);
+        const parts = [`{"traceEvents":[`, ...traceEvents, `], "stackFrames":${stackFrames},"otherData":${otherData}}`];
+        return new File(parts, file.name.replace(".lua", ".json"), { type: "application/json" });
     }
 
     private convertLuaToJSONString(content: string): string {
