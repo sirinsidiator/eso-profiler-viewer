@@ -26,12 +26,14 @@ class ESOProfilerPlugin implements Plugin {
         (globals as any)._dispatch = dispatch;
 
         const tauri = (window as any).__TAURI__;
-        const { documentDir } = tauri.path;
+        const { documentDir, resolve } = tauri.path;
         const { readTextFile } = tauri.fs;
         const DEFAULT_FILE_NAME = "ESOProfiler.lua";
         documentDir().then((DOCUMENTS: string) => {
-            readTextFile(`${DOCUMENTS}/Elder Scrolls Online/live/SavedVariables/${DEFAULT_FILE_NAME}`).then((content: string) => {
-                globals.dispatch(Actions.openTraceFromFile({ file: new File([content], DEFAULT_FILE_NAME) }));
+            resolve(DOCUMENTS, "Elder Scrolls Online", "live", "SavedVariables", DEFAULT_FILE_NAME).then((path: string) => {
+                readTextFile(path).then((content: string) => {
+                    globals.dispatch(Actions.openTraceFromFile({ file: new File([content], DEFAULT_FILE_NAME) }));
+                });
             });
         });
 

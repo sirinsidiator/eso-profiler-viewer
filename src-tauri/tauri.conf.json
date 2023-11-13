@@ -15,7 +15,7 @@
       "all": false,
       "fs": {
         "readFile": true,
-        "scope": ["$DOCUMENT/Elder Scrolls Online/*"]
+        "scope": ["$DOCUMENT/Elder Scrolls Online/**/*"]
       },
       "path": {
         "all": true
